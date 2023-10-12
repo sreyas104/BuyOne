@@ -1,0 +1,82 @@
+import React, { useState } from 'react';
+import { Button, Table } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+function Cart() {
+    const [cartItems, setCartItems] = useState([
+        { id: 1, name: 'Product 1', price: 10, quantity: 2 },
+        { id: 2, name: 'Product 2', price: 20, quantity: 1 },
+        // Add more items as needed
+    ]);
+
+    const incrementQuantity = (itemId) => {
+        const updatedCart = cartItems.map((item) =>
+            item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+        );
+        setCartItems(updatedCart);
+    };
+
+    const decrementQuantity = (itemId) => {
+        const updatedCart = cartItems.map((item) =>
+            item.id === itemId && item.quantity > 1
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+        );
+        setCartItems(updatedCart);
+    };
+
+    const removeItem = (itemId) => {
+        const updatedCart = cartItems.filter((item) => item.id !== itemId);
+        setCartItems(updatedCart);
+    };
+
+    const calculateTotal = () => {
+        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    };
+
+    return (
+        <div>
+            <h1>Cart</h1>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {cartItems.map((item) => (
+                        <tr key={item.id}>
+                            <td>{item.name}</td>
+                            <td>${item.price}</td>
+                            <td>
+                                <Button variant="primary" size="sm" onClick={() => decrementQuantity(item.id)}>
+                                    <FontAwesomeIcon icon={faMinus} />
+                                </Button>{' '}
+                                {item.quantity}{' '}
+                                <Button variant="primary" size="sm" onClick={() => incrementQuantity(item.id)}>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </Button>
+                            </td>
+                            <td>${item.price * item.quantity}</td>
+                            <td>
+                                <Button variant="danger" size="sm" onClick={() => removeItem(item.id)}>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </Button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
+            <div>
+                <strong>Total: ${calculateTotal()}</strong>
+            </div>
+        </div>
+    );
+}
+
+export default Cart;
