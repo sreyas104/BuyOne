@@ -17,7 +17,7 @@ function ProductDetails({ onClick }) {
     const [productDetails, setProductDetails] = useState([])
 
     useEffect(() => {
-        axios.get(`http://caffa.smsoman.com/api/V1/product/${id}`, {
+        axios.get(`https://caffa.smsoman.com/api/V1/product/${id}`, {
             headers: {
                 'Authorization': 'Bearer EqzC2SPUcFRrrJKKL4ngAGAnZDIN8ZLS'
             }

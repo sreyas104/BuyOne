@@ -24,7 +24,7 @@ function Register() {
         e.preventDefault();
 
 
-        axios.post('http://caffa.smsoman.com/api/V1/customers', formData, {
+        axios.post('https://caffa.smsoman.com/api/V1/customers', formData, {
             headers: {
 
                 'Authorization': 'Bearer EqzC2SPUcFRrrJKKL4ngAGAnZDIN8ZLS'

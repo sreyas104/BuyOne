@@ -9,7 +9,7 @@ function CartPage() {
     const [cartThings, setCartThings] = useState([])
 
     useEffect(() => {
-        axios.post('http://caffa.smsoman.com/api/V1/products', null, {
+        axios.post('https://caffa.smsoman.com/api/V1/products', null, {
             headers: {
                 'Authorization': 'Bearer EqzC2SPUcFRrrJKKL4ngAGAnZDIN8ZLS'
             }

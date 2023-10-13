@@ -24,7 +24,7 @@ function Login() {
 
         try {
             // Send a POST request to the login API endpoint with the Authorization header
-            const response = await axios.post('http://caffa.smsoman.com/api/V1/integration/customer/token', formData, {
+            const response = await axios.post('https://caffa.smsoman.com/api/V1/integration/customer/token', formData, {
                 headers: {
                     'Authorization': `Bearer ${bearerToken}`,
                 },
